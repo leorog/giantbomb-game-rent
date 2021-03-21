@@ -1,0 +1,4 @@
+{:env :prod
+ :giantbomb {:url "https://www.giantbomb.com/api/search/"
+             :api-key "12caeb02ac1d482266a316575058254823fb731c"}
+ :db {:storage-path ".db-prod"}}
