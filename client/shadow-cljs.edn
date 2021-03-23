@@ -1,0 +1,19 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/dev"
+  "src/main"
+  "src/test"]
+
+ :dependencies
+ [[clj-commons/secretary "1.2.4"]
+  [cljs-http "0.1.46"]
+  [org.clojure/core.async "1.3.610"]
+  [reagent "1.0.0"]]
+
+ :builds {:app {:output-dir "assets/js/"
+                :asset-path "."
+                :target     :browser
+                :modules    {:main {:init-fn app/main!}}
+                :devtools   {:http-root  "assets/"
+                             :http-port  4000
+                             :after-load app/reload!}}}}
