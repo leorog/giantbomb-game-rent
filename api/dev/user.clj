@@ -1,6 +1,9 @@
 (ns user
   (:require
-   [components.service :as service]))
+   [components.config :as config]
+   [components.db :as db]
+   [components.service :as service]
+   [datahike.api :as d]))
 
 (defonce server (atom nil))
 
@@ -14,3 +17,9 @@
 (defn restart []
   (stop-dev)
   (start-dev))
+
+(comment
+  (def conn (db/init (config/init :prod)))
+  (d/q '{:find [[(pull ?e [:*]) ...]]
+         :where [[?e :catalog/game-id]]}
+       (d/db conn)))

@@ -1,3 +1,22 @@
+# Result
+
+- backend code at api/
+ - GET /search?q=giantbombquery
+ - POST /rent 
+   - contract `{:game-ids [ids]}`
+- client code at client/
+
+## Running
+
+At the root dir
+```sh
+make run
+```
+
+This will package client code into api/resources/ and package the backend as a jar that runs jetty serving the client code and the two endpoints 
+
+The default config should bind to 8080, the client application can be found at http://localhost:8080/index.html
+
 # Gravie Software Engineer Challenge
 
 ## Instructions

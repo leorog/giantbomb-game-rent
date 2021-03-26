@@ -10,5 +10,5 @@
         base-state (rent.logic/rent-tx {:game-ids [1]} #inst "2021-03-21")
         _ (rent.db/register-rent conn base-state)]
     (testing "it handle cas exceptions"
-      (is (= {:error {:already-rented 4}}
+      (is (= {:error {:already-rented 1}}
              (rent.db/register-rent conn base-state))))))

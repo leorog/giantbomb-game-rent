@@ -7,6 +7,7 @@
   (vec
    (mapcat
     (fn [game-id]
-      [{:catalog/game-id (long game-id )}
+      [{:db/id (long game-id)
+        :catalog/game-id (long game-id)}
        [:db/cas [:catalog/game-id (long game-id)] :rent/rented-at nil (time/to-java-date as-of)]])
     game-ids)))

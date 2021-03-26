@@ -46,11 +46,16 @@
 (defn create-server
   [{:keys [:port :env] :or {port 3000 env :dev}}]
   (let [config      (config/init env)
-        service-map (-> {::http/routes (routes)
-                         ::http/type   :jetty
-                         ::http/join?  (= :prod env)
-                         ::http/resource-path "/public"
-                         ::http/port   port}
+        service-map (-> {:env env
+                         ::http/routes          (routes)
+                         ::http/type            :jetty
+                         ::http/join?           (= :prod env)
+                         ::http/resource-path   "/public"
+                         ::http/allowed-origins (if (= :dev env)
+                                                   (constantly true)
+                                                   (:cors-config config))
+                         ::http/port            port
+                         ::http/secure-headers {:content-security-policy-settings nil}}
                         http/default-interceptors
                         (update :io.pedestal.http/interceptors conj
                                 http/json-body
